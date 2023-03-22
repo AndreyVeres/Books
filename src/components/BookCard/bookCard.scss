@@ -1,0 +1,26 @@
+.book__item {
+  width: 300px;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #0e0e0e;
+  padding: 20px 5px;
+  border-radius: 5px;
+  height: 350px;
+  color: #fff;
+
+  .book__name {
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .book__img {
+    box-shadow: 5px 5px 30px;
+  }
+
+  a {
+    color: inherit;
+  }
+}
