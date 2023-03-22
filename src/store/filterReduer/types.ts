@@ -2,6 +2,7 @@ export enum FILTERACTIONS {
   SEARC_QUERY_CHANGE = 'SEARC_QUERY_CHANGE',
   CATEGORY_CHANGE = 'CATEGORY_CHANGE',
   SORT_TYPE_CHANGE = 'ORTINGBY_CHANGE',
+  START_INDEX_CHANGE = 'START_INDEX_CHANGE',
 }
 
 export interface ISetQueryAction {
@@ -17,4 +18,13 @@ export interface ISetSortTypeAction {
   payload: string;
 }
 
-export type IFilterActions = ISetQueryAction | ISetSortTypeAction | ISetCategoryAction;
+export interface ISetStartIndexAction {
+  type: FILTERACTIONS.START_INDEX_CHANGE;
+  payload: number;
+}
+
+export type IFilterActions =
+  | ISetQueryAction
+  | ISetSortTypeAction
+  | ISetCategoryAction
+  | ISetStartIndexAction;

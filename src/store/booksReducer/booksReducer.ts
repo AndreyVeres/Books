@@ -26,6 +26,9 @@ export const booksReducer = (state = bookInitialState, action: IBooksActions): I
         startIndex: state.startIndex + maxResults + 1,
       };
     }
+    case BOOKS_ACTIONS.RESET_BOOKS: {
+      return bookInitialState;
+    }
     default:
       return state;
   }

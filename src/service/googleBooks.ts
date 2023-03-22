@@ -13,6 +13,11 @@ export const getBooks = async (
   return response;
 };
 
-export const getBook = async (bookId: string) => {
-  return fetch(`${basicURL}${bookId}`).then((book) => book.json());
+export const getBook = async (query: string) => {
+  const URL = `${basicURL}${query}`;
+
+  const request = await fetch(URL);
+  const response = await request.json();
+
+  return response;
 };
