@@ -1,0 +1,18 @@
+.book {
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  display: flex;
+  height: 100%;
+  padding: 10px 30px;
+  flex-wrap: wrap;
+
+  &__info {
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+}
