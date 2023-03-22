@@ -1,38 +1,33 @@
-import React, { useState } from 'react';
-import Book from '../Book/Book';
-import { useStore } from 'hooks/useStore';
+import React, { FC } from 'react';
+import { BookCard, Spinner } from 'components';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { useFetch } from 'hooks/useFetch';
 
 import './bookList.scss';
-import { getBooks } from 'service/googleBooks';
+import { MyButton } from 'components/UI/Button/MyButton';
 
-export default function BooksList(): JSX.Element {
-  const { books, total } = useStore();
-
-  const { searchQuery, sortType, categories, updateBooks } = useStore();
-  const [startIndex, setStartIndex] = useState(30);
-
-  const searchHandler = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): Promise<void> => {
-    e.preventDefault();
-
-    getBooks(searchQuery, sortType, categories, startIndex).then(({ items }) => {
-      updateBooks(items);
-      setStartIndex((prev) => (prev += 30));
-    });
-  };
-
+export const BooksList: FC = (): JSX.Element => {
+  const { total, books } = useAppSelector((state) => state.booksReducer);
+  const { loadAndUpdateBooks } = useFetch();
   return (
     <>
-      <h3 className="total__items">{total}</h3>
+      <h3 className="total__items">Found: {total} books</h3>
       <ul className="books" style={{ marginBottom: 30 }}>
-        {total > 0 ? (
-          books?.map((book) => <Book {...book} key={book.id + book.etag} />)
+        {total ? (
+          books?.map((book) => <BookCard {...book} key={book.id + book.etag} />)
         ) : (
-          <div>loading...</div>
+          <Spinner />
         )}
       </ul>
-      <button onClick={(e) => searchHandler(e)}>load more</button>
+
+      <MyButton
+        onClick={(e) => {
+          e.preventDefault();
+          loadAndUpdateBooks();
+        }}
+      >
+        load more
+      </MyButton>
     </>
   );
-}
+};

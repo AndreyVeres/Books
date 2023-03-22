@@ -1,1 +1,18 @@
 @import './lib/normalize.scss';
+
+body {
+  background-color: rgb(0, 0, 0);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 190px);
+}
+
+
+.title {
+  text-align: left;
+  color: #fff;
+}
