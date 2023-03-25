@@ -1,4 +1,4 @@
-import { basicURL, maxResults, API_KEY } from './consts';
+import { basicURL, maxResults } from './consts';
 import { IGoogleBooksResponse } from './types';
 
 export const getBooks = async (
@@ -7,7 +7,7 @@ export const getBooks = async (
   categories: string,
   startIndex = 0
 ): Promise<IGoogleBooksResponse> => {
-  const URL = `${basicURL}${searchQuery}+subject:${categories}&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${sortType}&${API_KEY}`;
+  const URL = `${basicURL}${searchQuery}+subject:${categories}&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${sortType}&${process.env.API_KEY}`;
   const request = await fetch(URL);
   const response = await request.json();
   return response;
