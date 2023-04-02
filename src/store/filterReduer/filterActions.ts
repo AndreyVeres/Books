@@ -1,3 +1,4 @@
+import { maxResults } from 'service/consts';
 import {
   FILTERACTIONS,
   ISetCategoryAction,
@@ -15,9 +16,9 @@ export const filterActions = {
     type: FILTERACTIONS.CATEGORY_CHANGE,
     payload: category,
   }),
-  setStartIndex: (startIndex: number): ISetStartIndexAction => ({
+  setStartIndex: (): ISetStartIndexAction => ({
     type: FILTERACTIONS.START_INDEX_CHANGE,
-    payload: startIndex,
+    payload: maxResults,
   }),
   setSortType: (sortType: string): ISetSortTypeAction => ({
     type: FILTERACTIONS.SORT_TYPE_CHANGE,

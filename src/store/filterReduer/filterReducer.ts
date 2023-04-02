@@ -23,7 +23,7 @@ export const filterReducer = (state = filterInitialState, action: IFilterActions
     case FILTERACTIONS.SORT_TYPE_CHANGE:
       return { ...state, sortType: action.payload };
     case FILTERACTIONS.START_INDEX_CHANGE: {
-      return { ...state, startIndex: action.payload };
+      return { ...state, startIndex: state.startIndex + action.payload };
     }
     default:
       return state;
