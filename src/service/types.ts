@@ -1,7 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IGoogleBooksResponse {
   items: IBook[];
   kind: string;
   totalItems: number;
+}
+
+export interface IUser {
+  name: string;
+  favoritBooks?: any[];
+}
+
+export interface IUserServiceResponse {
+  token: string;
+  user: IUser;
 }
 
 export interface IBook {
