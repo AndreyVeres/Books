@@ -9,7 +9,7 @@ export const BookCard: FC<IBook> = (book): JSX.Element => {
 
   return (
     <li className="book__item">
-      <Link to={`/${book.id}`}>
+      <Link to={`/details/${book.id}`}>
         <img src={imageLinks?.smallThumbnail} alt="book__label" className="book__img" />
       </Link>
       <p className="book__genre">{categories?.join(' ')}</p>

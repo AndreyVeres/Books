@@ -1,17 +1,20 @@
-import { ErrorMessage } from 'components/UI/ErrorMessage/Error';
-import { Spinner } from 'components/UI/Spinner/Spinner';
 import React, { FC, useEffect, useState } from 'react';
+import { ErrorMessage, MyButton, Spinner } from 'components';
 import { useParams } from 'react-router-dom';
 import { getBook } from 'service/googleBooks';
 import { IBook, IGoogleBooksResponse } from 'service/types';
 
 import './bookDetails.scss';
 
+import { useAppSelector } from 'hooks/useAppSelector';
+
 export const BookDetails: FC = (): JSX.Element => {
   const { bookId } = useParams();
   const [book, setBook] = useState<IBook>({} as IBook);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const isAuth = useAppSelector((state) => state.userReducer.isAuth);
 
   useEffect(() => {
     getBook(bookId as string)
@@ -44,6 +47,7 @@ export const BookDetails: FC = (): JSX.Element => {
                 <h4 className="book__author">{book.volumeInfo.authors}</h4>
                 <p className="book__descriptions">{book.volumeInfo.description}</p>
               </div>
+              {isAuth ? <MyButton>Добавить в избранное</MyButton> : null}
             </>
           ) : (
             <Spinner />

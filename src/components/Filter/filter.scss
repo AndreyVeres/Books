@@ -1,12 +1,10 @@
 .search {
-  max-width: 320px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: stretch;
+  justify-content: center;
   margin: 0 auto;
-  gap: 10px;
+  gap: 42px;
   color: #fff;
+  padding: 10px 0;
 
   &__input {
     text-align: center;

@@ -1,14 +1,20 @@
 import React, { FC } from 'react';
-import { BookCard, Spinner } from 'components';
+import { BookCard, Spinner, MyButton } from 'components';
 import { useAppSelector } from 'hooks/useAppSelector';
-import { useFetch } from 'hooks/useFetch';
 
 import './bookList.scss';
-import { MyButton } from 'components/UI/Button/MyButton';
+import { useActions } from 'hooks/useActions';
 
 export const BooksList: FC = (): JSX.Element => {
   const { total, books } = useAppSelector((state) => state.booksReducer);
-  const { loadAndUpdateBooks } = useFetch();
+  const { loadBooks, setStartIndex } = useActions();
+
+  const loadBooksHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    setStartIndex();
+    loadBooks();
+  };
+
   return (
     <>
       <h3 className="total__items">Found: {total} books</h3>
@@ -20,14 +26,7 @@ export const BooksList: FC = (): JSX.Element => {
         )}
       </ul>
 
-      <MyButton
-        onClick={(e) => {
-          e.preventDefault();
-          loadAndUpdateBooks();
-        }}
-      >
-        load more
-      </MyButton>
+      <MyButton onClick={loadBooksHandler}>load more books</MyButton>
     </>
   );
 };

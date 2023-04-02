@@ -1,18 +1,23 @@
 import React, { FC } from 'react';
 import { useActions } from 'hooks/useActions';
 import { useAppSelector } from 'hooks/useAppSelector';
-import { useFetch } from 'hooks/useFetch';
+import { MyButton } from 'components';
+import { useNavigate } from 'react-router-dom';
 
 import './filter.scss';
 
-import { MyButton } from 'components/UI/Button/MyButton';
-import { useNavigate } from 'react-router-dom';
-
 export const Filter: FC = (): JSX.Element => {
   const { searchQuery } = useAppSelector((state) => state.filterReducer);
-  const { setQuery, setSortType, setCategory } = useActions();
-  const { loadAndSetBooks } = useFetch();
+  const { setQuery, setSortType, setCategory, loadBooks, resetBooks } = useActions();
   const navigate = useNavigate();
+
+  const searchHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    navigate('/');
+    resetBooks();
+    loadBooks();
+  };
+
   return (
     <>
       <form className="search" role="search">
@@ -53,15 +58,7 @@ export const Filter: FC = (): JSX.Element => {
             <option value="newest">Newest</option>
           </select>
         </div>
-        <MyButton
-          onClick={(e) => {
-            navigate('/');
-            e.preventDefault();
-            loadAndSetBooks();
-          }}
-        >
-          find books
-        </MyButton>
+        <MyButton onClick={searchHandler}>find books</MyButton>
       </form>
     </>
   );

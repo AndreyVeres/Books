@@ -1,28 +1,20 @@
-import { BooksList, Filter, BookDetails, Logo } from 'components';
-import { useFetch } from 'hooks/useFetch';
-
 import React, { FC, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
 
+import { router } from 'router/router';
+import { useActions } from 'hooks/useActions';
+
 export const App: FC = (): JSX.Element => {
-  const { loadAndSetBooks } = useFetch();
+  const { checkAuth } = useActions();
 
   useEffect(() => {
-    loadAndSetBooks();
-  }, []);
+    checkAuth();
+  });
+
   return (
     <>
-      <header>
-        <Logo />
-        <Filter />
-      </header>
-      <main className="main">
-        <Routes>
-          <Route path="/" element={<BooksList />} />
-          <Route path="/:bookId" element={<BookDetails />} />
-        </Routes>
-      </main>
+      <RouterProvider router={router} />
     </>
   );
 };
