@@ -1,4 +1,4 @@
-button {
+.btn {
   background-color: #ff9000;
   border-radius: 100px;
   box-shadow: rgba(68, 11, 11, 0);
@@ -12,10 +12,9 @@ button {
   border: 0;
   font-size: 16px;
   max-width: 300px;
-  margin: 0 auto;
 }
 
-button:hover {
+.btn:hover {
   box-shadow: rgba(25, 43, 5, 0.842);
   transform: scale(1.05) rotate(-1deg);
 }

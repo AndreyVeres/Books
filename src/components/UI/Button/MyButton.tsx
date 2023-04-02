@@ -10,5 +10,9 @@ interface IMyButtonProps {
 }
 
 export const MyButton: FC<IMyButtonProps> = ({ children, ...props }) => {
-  return <button {...props}>{children}</button>;
+  return (
+    <button className="btn" {...props}>
+      {children}
+    </button>
+  );
 };
