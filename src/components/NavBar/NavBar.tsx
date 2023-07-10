@@ -12,7 +12,7 @@ export const NavBar = (): JSX.Element => {
   return (
     <header className="header">
       <Logo />
-      {isAuth ? (
+      {/* {isAuth ? (
         <nav>
           <ul>
             <Link to={'/profile'}>{currentUser?.name}</Link>
@@ -32,7 +32,7 @@ export const NavBar = (): JSX.Element => {
             </li>
           </ul>
         </nav>
-      )}
+      )} */}
     </header>
   );
 };

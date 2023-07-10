@@ -6,27 +6,27 @@ import { PrivateRoute } from './PrivateRoute';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import { IUser } from 'service/types';
 
-const mainLoader = async (): Promise<IUser | void> => {
-  try {
-    const token = `Bearer ${localStorage.getItem('token')}`;
-    const request = await fetch('http://localhost:5432/auth', {
-      headers: {
-        Authorization: token ?? '',
-      },
-    });
-    const response = await request.json();
-    const { user } = response;
+// const mainLoader = async (): Promise<IUser | void> => {
+//   try {
+//     const token = `Bearer ${localStorage.getItem('token')}`;
+//     const request = await fetch('http://localhost:5432/auth', {
+//       headers: {
+//         Authorization: token ?? '',
+//       },
+//     });
+//     const response = await request.json();
+//     const { user } = response;
 
-    return user || null;
-  } catch (err) {
-    localStorage.removeItem('token');
-  }
-};
+//     return user || null;
+//   } catch (err) {
+//     localStorage.removeItem('token');
+//   }
+// };
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<MainPage />} loader={mainLoader}>
+      <Route path="/" element={<MainPage />}>
         <Route index element={<BooksList />} />
 
         <Route path="/details/:bookId" element={<BookDetails />} />
